@@ -7,49 +7,54 @@ class IndexView(TemplateView):
     template_name = 'telovendo/index.html'
 
     def get(self, request, *args, **kwargs):
-        title = "Bienvenido a TeloVendo"
+        title = "Bienvenido a TeLoVendo"
         return render(request, self.template_name, {"title": title})
 
 class UsuariosView(TemplateView):
     template_name = 'telovendo/usuarios.html'
 
     def get(self, request, *args, **kwargs):
-        title = "Nuestros usuarios"
+        title = "Opiniones de nuestros clientes"
         usuarios = [
             {
-            "imagen": "https://picsum.photos/id/1/300/200",
+            "imagen": "https://picsum.photos/id/40/300/200",
             "nombre": "Carlo",
             "apellido": "Vasquez",
-            "nombre_usuario": "cvasquez",
-            "password": "123qwe12"
+            "ubicacion": "Valparaíso",
+            "comentario": "TeLoVendo es el mejor sitio de compras de la Región",
+            "puntaje": "7",
             },
             {
-            "imagen": "https://picsum.photos/id/2/300/200",
+            "imagen": "https://picsum.photos/id/103/300/200",
             "nombre": "Italo",
             "apellido": "Soto",
-            "nombre_usuario": "isoto",
-            "password": "12345678"
+            "ubicacion": "Papudo",
+            "comentario": "TeLoVendo es el mejor sitio de compras de la Región",
+            "puntaje": "7",
             },
             {
-            "imagen": "https://picsum.photos/id/3/300/200",
+            "imagen": "https://picsum.photos/id/65/300/200",
             "nombre": "Anastacia",
             "apellido": "Lira",
-            "nombre_usuario": "alira",
-            "password": "alira2023"
+            "ubicacion": "Los Andes",
+            "comentario": "TeLoVendo es el mejor sitio de compras de la Región",
+            "puntaje": "7",
             },
             {
-            "imagen": "https://picsum.photos/id/4/300/200",
+            "imagen": "https://picsum.photos/id/177/300/200",
             "nombre": "Marcelo",
             "apellido": "Moragues",
-            "nombre_usuario": "mmoragues",
-            "password": "macjob23"
+            "ubicacion": "Quilpué",
+            "comentario": "TeLoVendo es el mejor sitio de compras de la Región",
+            "puntaje": "6",
             },
             {
-            "imagen": "https://picsum.photos/id/5/300/200",
-            "nombre": "Vladimir",
+            "imagen": "https://picsum.photos/id/319/300/200",
+            "nombre": "Valentina",
             "apellido": "Tapia",
-            "nombre_usuario": "vtapia",
-            "password": "abcdefgh"
+            "ubicacion": "Petorca",
+            "comentario": "TeLoVendo es el mejor sitio de compras de la Región",
+            "puntaje": "6.5",
             },
         ]
         return render(request, self.template_name, {"usuarios": usuarios, "title": title,})

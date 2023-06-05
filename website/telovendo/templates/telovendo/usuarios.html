@@ -4,16 +4,16 @@
         <div class="card-group">
             {% for usuario in usuarios %}
             <div class="card m-3">
-              <img src="{{usuario.imagen}}" class="card-img-top" alt="Imagen">
-              <div class="card-body">
-                <h5 class="card-title">{{usuario.nombre_usuario}}</h5>
-                <p class="card-text">Nombre: {{usuario.nombre}}</p>
-                <p class="card-text">Apellido: {{usuario.apellido}}</p>
-                <p class="card-text">Contraseña: {{usuario.password}}</p>
-              </div>
+                <img src="{{usuario.imagen}}" class="card-img-top" alt="Imagen">
+                <div class="card-body">
+                    <h5 class="card-title"> {{usuario.nombre}} {{usuario.apellido}} </h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Ubicación: {{usuario.ubicacion}}</li>
+                        <li class="list-group-item">Comentario: {{usuario.comentario}}</li>
+                        <li class="list-group-item">Nota: {{usuario.puntaje}}</li>
+                    </ul>
+                </div>
             </div>
             {% endfor %}
-            
-          </div>
-          {% endblock %}
-  
+        </div>
+        {% endblock %}
