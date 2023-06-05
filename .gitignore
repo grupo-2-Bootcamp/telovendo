@@ -4,9 +4,10 @@
 ### venv ###
 # Virtualenv
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-
+# End of https://www.toptal.com/developers/gitignore/api/venv
 .venv
 zips
 website/website/__pycache__
-
-# End of https://www.toptal.com/developers/gitignore/api/venv
+website/telovendo/__pycache__
+website/televendo/migrations/__pycache__
+website/telovendo/migrations/__pycache__/__init__.cpython-311.pyc

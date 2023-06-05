@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from website.views import bienvenido, inicio
+from telovendo.views import IndexView, UsuariosView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bienvenido', bienvenido),
-    path('', inicio),
+    #path('', inicio),
+    path('', IndexView.as_view(), name="Index"),
+    path('usuarios', UsuariosView.as_view(), name="Usuarios")
 ]
