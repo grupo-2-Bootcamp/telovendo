@@ -7,15 +7,16 @@ class IndexView(TemplateView):
     template_name = 'telovendo/index.html'
 
     def get(self, request, *args, **kwargs):
-        bienvenida = "Bienvenido a TeloVendo"
-        return render(request, self.template_name, {"bienvenida": bienvenida})
+        title = "Bienvenido a TeloVendo"
+        return render(request, self.template_name, {"title": title})
 
 class UsuariosView(TemplateView):
     template_name = 'telovendo/usuarios.html'
 
     def get(self, request, *args, **kwargs):
+        title = "Nuestros usuarios"
         usuarios = [
-           {
+            {
             "imagen": "https://picsum.photos/id/1/300/200",
             "nombre": "Carlo",
             "apellido": "Vasquez",
@@ -51,5 +52,5 @@ class UsuariosView(TemplateView):
             "password": "abcdefgh"
             },
         ]
-        return render(request, self.template_name, {"usuarios": usuarios})
+        return render(request, self.template_name, {"usuarios": usuarios, "title": title,})
     
