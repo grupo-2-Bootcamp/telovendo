@@ -7,7 +7,8 @@ class IndexView(TemplateView):
     template_name = 'telovendo/index.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        bienvenida = "Bienvenido a TeloVendo"
+        return render(request, self.template_name, {"bienvenida": bienvenida})
 
 class UsuariosView(TemplateView):
     template_name = 'telovendo/usuarios.html'
