@@ -14,10 +14,11 @@ class UsuariosView(TemplateView):
     template_name = 'telovendo/usuarios.html'
 
     def get(self, request, *args, **kwargs):
-        title = "Opiniones de nuestros clientes"
+        title = "Información de usuarios"
         usuarios = [
             {
-            "imagen": "https://picsum.photos/id/40/300/200",
+            "imagen": "https://picsum.photos/id/40/50/50",
+            "userid": "cvasquez",
             "nombre": "Carlo",
             "apellido": "Vasquez",
             "ubicacion": "Valparaíso",
@@ -25,7 +26,8 @@ class UsuariosView(TemplateView):
             "puntaje": "7",
             },
             {
-            "imagen": "https://picsum.photos/id/103/300/200",
+            "imagen": "https://picsum.photos/id/103/50/50",
+            "userid": "isoto",
             "nombre": "Italo",
             "apellido": "Soto",
             "ubicacion": "Papudo",
@@ -33,7 +35,8 @@ class UsuariosView(TemplateView):
             "puntaje": "7",
             },
             {
-            "imagen": "https://picsum.photos/id/65/300/200",
+            "imagen": "https://picsum.photos/id/65/50/50",
+            "userid": "alira",
             "nombre": "Anastacia",
             "apellido": "Lira",
             "ubicacion": "Los Andes",
@@ -41,7 +44,8 @@ class UsuariosView(TemplateView):
             "puntaje": "7",
             },
             {
-            "imagen": "https://picsum.photos/id/177/300/200",
+            "imagen": "https://picsum.photos/id/177/50/50",
+            "userid": "mmoragues",
             "nombre": "Marcelo",
             "apellido": "Moragues",
             "ubicacion": "Quilpué",
@@ -49,7 +53,8 @@ class UsuariosView(TemplateView):
             "puntaje": "6",
             },
             {
-            "imagen": "https://picsum.photos/id/319/300/200",
+            "imagen": "https://picsum.photos/id/319/50/50",
+            "userid": "vtapia",
             "nombre": "Valentina",
             "apellido": "Tapia",
             "ubicacion": "Petorca",

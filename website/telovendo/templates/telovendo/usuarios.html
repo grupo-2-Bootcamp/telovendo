@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 
         {% block content %}
-        <div class="card-group">
-            {% for usuario in usuarios %}
-            <div class="card m-3">
-                <img src="{{usuario.imagen}}" class="card-img-top" alt="Imagen">
-                <div class="card-body">
-                    <h5 class="card-title"> {{usuario.nombre}} {{usuario.apellido}} </h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Ubicación: {{usuario.ubicacion}}</li>
-                        <li class="list-group-item">Comentario: {{usuario.comentario}}</li>
-                        <li class="list-group-item">Nota: {{usuario.puntaje}}</li>
-                    </ul>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+
+        <table class="table m-3">
+            <thead>
+                <th scope="col">Imagen de perfil</th>
+                <th scope="col">Nombre de usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Ubicación</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Nota</th>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td><img src="{{usuario.imagen}}" alt="Imagen de perfil de {{usuario.nombre}} {{usuario.apellido}}"></td>
+                    <td>{{usuario.userid}}</td>
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.apellido}}</td>
+                    <td>{{usuario.ubicacion}}</td>
+                    <td>{{usuario.comentario}}</td>
+                    <td>{{usuario.puntaje}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         {% endblock %}
