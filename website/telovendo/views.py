@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from telovendo.form import FormularioProveedores
+
 # Create your views here.
 
 class IndexView(TemplateView):
@@ -63,4 +65,13 @@ class UsuariosView(TemplateView):
             },
         ]
         return render(request, self.template_name, {"usuarios": usuarios, "title": title,})
+
+
+class ContactoProveedoresView(TemplateView):
+    template_name = 'telovendo/contactoproveedores.html'
+
+    def get(self, request, *args, **kwargs):
+        title = "Ingreso de proveedores"
+        formulario = FormularioProveedores()
+        return render(request, self.template_name, {"formulario": formulario, "title": title})
     
