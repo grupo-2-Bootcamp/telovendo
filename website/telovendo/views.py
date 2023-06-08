@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-
 from telovendo.form import FormularioProveedores
+from telovendo.models import FormularioProveedoresDB
 
 # Create your views here.
 
@@ -74,4 +74,40 @@ class ContactoProveedoresView(TemplateView):
         title = "Ingreso de proveedores"
         formulario = FormularioProveedores()
         return render(request, self.template_name, {"formulario": formulario, "title": title})
+    
+    def post(self, request, *args, **kwargs):
+        form = FormularioProveedores(request.POST)
+        mensajes = {
+            "enviado" : True,
+            "resultado": None
+        }
+        if form.is_valid():
+            nombre_proveedor = form.cleaned_data["nombre_proveedor"]
+            razon_social = form.cleaned_data["razon_social"]
+            rut = form.cleaned_data["rut"]
+            giro = form.cleaned_data["giro"]
+            categoria = form.cleaned_data["categoria"]
+            productos = form.cleaned_data["productos"]
+            contacto = form.cleaned_data["contacto"]
+            email = form.cleaned_data["email"]
+            direccion = form.cleaned_data["direccion"]
+            comuna = form.cleaned_data["comuna"]
+
+            registro = FormularioProveedoresDB(
+                nombre_proveedor = nombre_proveedor,
+                razon_social = razon_social,
+                rut = rut,
+                giro = giro,
+                categoria= categoria,
+                productos = productos,
+                contacto = contacto,
+                email = email,
+                direccion = direccion,
+                comuna = comuna
+            )
+            registro.save()
+            mensajes = {"enviado": True, "resultado": "Formulario enviado correctamente"}
+        else:
+            mensajes = {"enviado": False, "resultado": form.errors}
+        return render(request, self.template_name, {"formulario": form, "mensajes": mensajes})
     
