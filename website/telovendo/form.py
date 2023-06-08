@@ -56,7 +56,7 @@ class FormularioProveedores(forms.Form):
                                         },
                                         widget= forms.TextInput
                                         )
-    email = forms.CharField             (label="Email", required = True,
+    email = forms.EmailField             (label="Email", required = True,
                                         error_messages={
                                             'required': 'Tiene que indicar el email de contacto',
                                         },
