@@ -3,5 +3,118 @@
     {% block content %}
     <div>
         Acá tiene que ir el formulario
+
+        <tr>
+            <th><label for="id_nombre_proveedor">Nombre:</label></th>
+            <td>
+        
+              <input type="text" name="nombre_proveedor" placeholder="Ingrese el nombre del Proveedor" maxlength="50" required id="id_nombre_proveedor">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_razon_social">RazonSocial:</label></th>
+            <td>
+        
+              <input type="text" name="razon_social" placeholder="Ingrese su Razon Social" maxlength="50" minlength="5" required id="id_razon_social">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_rut">Rut:</label></th>
+            <td>
+        
+              <input type="text" name="rut" placeholder="" maxlength="12" required id="id_rut">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_giro">Giro:</label></th>
+            <td>
+        
+              <input type="text" name="giro" placeholder="" maxlength="30" required id="id_giro">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_categoria">Categoria:</label></th>
+            <td>
+        
+              <input type="text" name="categoria" required id="id_categoria">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_productos">Productos:</label></th>
+            <td>
+        
+              <textarea name="productos" cols="40" rows="10" required id="id_productos">
+        </textarea>
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_contacto">Contacto:</label></th>
+            <td>
+        
+              <input type="text" name="contacto" required id="id_contacto">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_telefono">Telefono:</label></th>
+            <td>
+        
+              <input type="text" name="telefono" required id="id_telefono">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_email">Email:</label></th>
+            <td>
+        
+              <input type="text" name="email" required id="id_email">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_direccion">Direccion:</label></th>
+            <td>
+        
+              <input type="text" name="direccion" placeholder="" required id="id_direccion">
+        
+        
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_comuna">Comuna:</label></th>
+            <td>
+        
+              <input type="text" name="comuna" placeholder="" required id="id_comuna">
+        
+        
+        
+        
+            </td>
+          </tr>
     </div> 
     {% endblock %}
