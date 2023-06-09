@@ -71,11 +71,12 @@ class ContactoProveedoresView(TemplateView):
     template_name = 'telovendo/contactoproveedores.html'
 
     def get(self, request, *args, **kwargs):
-        title = "Ingreso de proveedores"
+        title = "Formulario de ingreso de proveedores"
         formulario = FormularioProveedores()
         return render(request, self.template_name, {"formulario": formulario, "title": title})
     
     def post(self, request, *args, **kwargs):
+        title = "Formulario de ingreso de proveedores"
         form = FormularioProveedores(request.POST)
         mensajes = {
             "enviado" : True,
@@ -89,6 +90,7 @@ class ContactoProveedoresView(TemplateView):
             categoria = form.cleaned_data["categoria"]
             productos = form.cleaned_data["productos"]
             contacto = form.cleaned_data["contacto"]
+            telefono = form.cleaned_data["telefono"]
             email = form.cleaned_data["email"]
             direccion = form.cleaned_data["direccion"]
             comuna = form.cleaned_data["comuna"]
@@ -102,6 +104,7 @@ class ContactoProveedoresView(TemplateView):
                 productos = productos,
                 contacto = contacto,
                 email = email,
+                telefono = telefono,
                 direccion = direccion,
                 comuna = comuna
             )
@@ -109,5 +112,5 @@ class ContactoProveedoresView(TemplateView):
             mensajes = {"enviado": True, "resultado": "Formulario enviado correctamente"}
         else:
             mensajes = {"enviado": False, "resultado": form.errors}
-        return render(request, self.template_name, {"formulario": form, "mensajes": mensajes})
+        return render(request, self.template_name, {"formulario": form, "mensajes": mensajes, "title": title})
     

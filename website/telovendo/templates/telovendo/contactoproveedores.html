@@ -2,52 +2,62 @@
         
     {% block content %}
     <div>
+        <div class="row m-4">
+            <div class="col-6">
+                <p>¡Nos complace invitarte a formar parte de nuestra red de proveedores! En nuestro constante compromiso por ofrecer productos y servicios de calidad, estamos buscando proveedores confiables y comprometidos que puedan satisfacer nuestras necesidades.</p>
+                <p>Como proveedor, tendrás la oportunidad de colaborar con nosotros en diferentes proyectos y contribuir a nuestro crecimiento mutuo. Valoramos la calidad, la eficiencia y la ética en los negocios, por lo que estamos interesados en establecer relaciones sólidas y duraderas con proveedores que compartan nuestros valores.</p>
+                <p>Para unirte a nuestra red de proveedores, te pedimos que completes el siguiente formulario de registro. Este formulario nos ayudará a conocerte mejor y evaluar si cumples con los requisitos necesarios para trabajar con nosotros. Asegúrate de proporcionar información precisa y detallada para facilitar el proceso de evaluación.</p>
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+    </div>
+
+    <div>
         <form method="post" action="{% url 'contactoProveedores' %}">
             {% csrf_token %}
+            <div class="row m-2"><h3>Información del proveedor</h3></div>
             <div class="row m-1">
-                <div class="col-1"><label for="id_nombre_proveedor">Nombre:</label></div>
-                <div class="col-3"><input type="text" name="nombre_proveedor" placeholder="Ingrese el nombre del Proveedor" maxlength="50" required id="id_nombre_proveedor" size="50"></div>
-                <div class="col-1"><label for="id_razon_social">Razón Social:</label></div>
-                <div class="col-3"><input type="text" name="razon_social" placeholder="Ingrese su Razon Social" maxlength="50" minlength="5" required id="id_razon_social" size="50"></div>
+                <div class="col-1"><label for="id_nombre_proveedor" class="form-label">Nombre:</label></div>
+                <div class="col-5"><input type="text" name="nombre_proveedor" placeholder="Ingrese el nombre del Proveedor" maxlength="50" required id="id_nombre_proveedor" class="form-control"></div>
+                <div class="col-1"><label for="id_razon_social" class="form-label">Razón Social:</label></div>
+                <div class="col-5"><input type="text" name="razon_social" placeholder="Ingrese su Razon Social" maxlength="50" minlength="5" required id="id_razon_social" class="form-control"></div>
             </div>
             <div class="row m-1">
-                <div class="col-1"><label for="id_rut">RUT:</label></div>
-                <div class="col-3"><input type="text" name="rut" placeholder="" maxlength="12" required id="id_rut"></div>
-                <div class="col-1"><label for="id_giro">Giro:</label></div>
-                <div class="col-3"><input type="text" name="giro" placeholder="" maxlength="30" required id="id_giro" size="50"></div>
+                <div class="col-1"><label for="id_rut" class="form-label">RUT:</label></div>
+                <div class="col-5"><input type="text" name="rut" placeholder="Ingrese el RUT" maxlength="12" required id="id_rut" class="form-control"></div>
+                <div class="col-1"><label for="id_giro" class="form-label">Giro:</label></div>
+                <div class="col-5"><input type="text" name="giro" placeholder="Ingrese el giro (máximo 30 caracteres)" maxlength="30" required id="id_giro" class="form-control"></div>
+            </div>
+            <div class="row m-2"><h3>Información de contacto</h3></div>
+            <div class="row m-1">
+                <div class="col-1"><label for="id_contacto" class="form-label">Nombre del contacto:</label></div>
+                <div class="col-11"><input type="text" name="contacto" required id="id_contacto" class="form-control"></div>
             </div>
             <div class="row m-1">
-                <div class="col-1"></div>
-                <div class="col-3"></div>
-                <div class="col-1"></div>
-                <div class="col-3"></div>
+                <div class="col-1"><label for="id_telefono" class="form-label">Teléfono:</label></div>
+                <div class="col-5"><input type="text" name="telefono" required id="id_telefono" class="form-control"></div>
+                <div class="col-1"><label for="id_email" class="form-label">Email:</label></div>
+                <div class="col-5"><input type="email" name="email" required id="id_email" class="form-control"></div>
             </div>
             <div class="row m-1">
-                <div class="col-1"><label for="id_categoria">Categoria:</label></div>
-                <div class="col-9"><input type="text" name="categoria" required id="id_categoria" size="136" ></div>
+                <div class="col-1"><label for="id_direccion" class="form-label">Direccion:</label></div>
+                <div class="col-5"><input type="text" name="direccion" placeholder="" required id="id_direccion" class="form-control"></div>
+                <div class="col-1"><label for="id_comuna" class="form-label">Comuna:</label></div>
+                <div class="col-5"><input type="text" name="comuna" placeholder="" required id="id_comuna" class="form-control"></div>
+            </div>
+            <div class="row m-2"><h3>Información de productos</h3></div>
+            <div class="row m-1">
+                <div class="col-1"><label for="id_categoria" class="form-label">Categoria:</label></div>
+                <div class="col-11"><input type="text" name="categoria" required id="id_categoria" class="form-control" ></div>
             </div>
             <div class="row m-1">
-                <div class="col-1"><label for="id_productos">Productos:</label></div>
-                <div class="col-9"><textarea name="productos" cols="139" rows="5" required id="id_productos"></textarea></div>
-            </div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_contacto">Nombre del contacto:</label></div>
-                <div class="col-9"><input type="text" name="contacto" required id="id_contacto" size="136"></div>
-            </div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_telefono">Teléfono:</label></div>
-                <div class="col-3"><input type="text" name="telefono" required id="id_telefono" size="50"></div>
-                <div class="col-1"><label for="id_email">Email:</label></div>
-                <div class="col-3"><input type="email" name="email" required id="id_email" size="50"></div>
-            </div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_direccion">Direccion:</label></div>
-                <div class="col-3"><input type="text" name="direccion" placeholder="" required id="id_direccion" size="50"></div>
-                <div class="col-1"><label for="id_comuna">Comuna:</label></div>
-                <div class="col-3"><input type="text" name="comuna" placeholder="" required id="id_comuna" size="50"></div>
+                <div class="col-1"><label for="id_productos" class="form-label">Productos:</label></div>
+                <div class="col-11"><textarea name="productos" rows="5" required id="id_productos" class="form-control"></textarea></div>
             </div>
             <div class="row-m1">
-                <div class="col"><button type="submit">Enviar formulario</button></div>
+                <div class="col-10"><button type="submit" class="btn btn-primary">Enviar formulario</button> <button type="reset" class="btn btn-secondary">Limpiar formulario</button></div>
             </div>
         </form>
     </div> 
