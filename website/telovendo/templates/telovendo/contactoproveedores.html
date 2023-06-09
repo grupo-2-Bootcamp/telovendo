@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-        
+{% load static %}
+
     {% block content %}
     <div>
         <div class="row m-4">
@@ -9,56 +10,50 @@
                 <p>Para unirte a nuestra red de proveedores, te pedimos que completes el siguiente formulario de registro. Este formulario nos ayudará a conocerte mejor y evaluar si cumples con los requisitos necesarios para trabajar con nosotros. Asegúrate de proporcionar información precisa y detallada para facilitar el proceso de evaluación.</p>
             </div>
             <div class="col-6">
-
+                <img src="{% static 'images/saludo.jpg' %}" class="img-fluid rounded mx-auto d-block" alt="Saludo entre dos personas">
             </div>
         </div>
     </div>
 
     <div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+            {% if mensajes and mensajes.enviado %}
+                <div class="alert alert-success mt-3" role="alert">
+                    {{ mensajes.resultado }}
+                </div>
+            {% endif %}
+            {% if mensajes and not mensajes.enviado %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    <h5>Errores en los siguientes campos:</h5>
+                    {{ mensajes.resultado }}
+                </div>
+            </div>
+            <div class="col-3"></div>
+        {% endif %}
+        </div>
+
         <form method="post" action="{% url 'contactoProveedores' %}">
-            {% csrf_token %}
-            <div class="row m-2"><h3>Información del proveedor</h3></div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_nombre_proveedor" class="form-label">Nombre:</label></div>
-                <div class="col-5"><input type="text" name="nombre_proveedor" placeholder="Ingrese el nombre del Proveedor" maxlength="50" required id="id_nombre_proveedor" class="form-control"></div>
-                <div class="col-1"><label for="id_razon_social" class="form-label">Razón Social:</label></div>
-                <div class="col-5"><input type="text" name="razon_social" placeholder="Ingrese su Razon Social" maxlength="50" minlength="5" required id="id_razon_social" class="form-control"></div>
+        {% csrf_token %}
+        <div class="form-group">
+        {% for campo in formulario %}
+            <div class="row m-2">
+                <strong class="col-2 col-form-label"><label for="{{ campo.id_for_label }}">{{ campo.label }}</label></strong>
+                <div class="col-10">
+                    {{ campo }} 
+                    {% if campo.help_text %}
+                        <div class="form-text">{{ campo.help_text }}</div>
+                    {% endif %}
+                </div>
             </div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_rut" class="form-label">RUT:</label></div>
-                <div class="col-5"><input type="text" name="rut" placeholder="Ingrese el RUT" maxlength="12" required id="id_rut" class="form-control"></div>
-                <div class="col-1"><label for="id_giro" class="form-label">Giro:</label></div>
-                <div class="col-5"><input type="text" name="giro" placeholder="Ingrese el giro (máximo 30 caracteres)" maxlength="30" required id="id_giro" class="form-control"></div>
+        {% endfor %}
+            <div class="d-flex justify-content-center m-4">
+                <button type="submit" class="btn btn-primary m-1">Enviar formulario</button> <button type="reset" class="btn btn-secondary m-1">Limpiar formulario</button>
             </div>
-            <div class="row m-2"><h3>Información de contacto</h3></div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_contacto" class="form-label">Nombre del contacto:</label></div>
-                <div class="col-11"><input type="text" name="contacto" required id="id_contacto" class="form-control"></div>
-            </div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_telefono" class="form-label">Teléfono:</label></div>
-                <div class="col-5"><input type="text" name="telefono" required id="id_telefono" class="form-control"></div>
-                <div class="col-1"><label for="id_email" class="form-label">Email:</label></div>
-                <div class="col-5"><input type="email" name="email" required id="id_email" class="form-control"></div>
-            </div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_direccion" class="form-label">Direccion:</label></div>
-                <div class="col-5"><input type="text" name="direccion" placeholder="" required id="id_direccion" class="form-control"></div>
-                <div class="col-1"><label for="id_comuna" class="form-label">Comuna:</label></div>
-                <div class="col-5"><input type="text" name="comuna" placeholder="" required id="id_comuna" class="form-control"></div>
-            </div>
-            <div class="row m-2"><h3>Información de productos</h3></div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_categoria" class="form-label">Categoria:</label></div>
-                <div class="col-11"><input type="text" name="categoria" required id="id_categoria" class="form-control" ></div>
-            </div>
-            <div class="row m-1">
-                <div class="col-1"><label for="id_productos" class="form-label">Productos:</label></div>
-                <div class="col-11"><textarea name="productos" rows="5" required id="id_productos" class="form-control"></textarea></div>
-            </div>
-            <div class="row-m1">
-                <div class="col-10"><button type="submit" class="btn btn-primary">Enviar formulario</button> <button type="reset" class="btn btn-secondary">Limpiar formulario</button></div>
-            </div>
+        </div>
         </form>
+
+        
     </div> 
     {% endblock %}

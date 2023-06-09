@@ -87,29 +87,29 @@ class ContactoProveedoresView(TemplateView):
             razon_social = form.cleaned_data["razon_social"]
             rut = form.cleaned_data["rut"]
             giro = form.cleaned_data["giro"]
-            categoria = form.cleaned_data["categoria"]
-            productos = form.cleaned_data["productos"]
             contacto = form.cleaned_data["contacto"]
             telefono = form.cleaned_data["telefono"]
             email = form.cleaned_data["email"]
             direccion = form.cleaned_data["direccion"]
             comuna = form.cleaned_data["comuna"]
+            categoria = form.cleaned_data["categoria"]
+            productos = form.cleaned_data["productos"]
 
             registro = FormularioProveedoresDB(
                 nombre_proveedor = nombre_proveedor,
                 razon_social = razon_social,
                 rut = rut,
                 giro = giro,
-                categoria= categoria,
-                productos = productos,
                 contacto = contacto,
                 email = email,
                 telefono = telefono,
                 direccion = direccion,
-                comuna = comuna
+                comuna = comuna,
+                categoria= categoria,
+                productos = productos,
             )
             registro.save()
-            mensajes = {"enviado": True, "resultado": "Formulario enviado correctamente"}
+            mensajes = {"enviado": True, "resultado": "Hemos recibido el formulario correctamente, y pronto nos pondremos en contacto."}
         else:
             mensajes = {"enviado": False, "resultado": form.errors}
         return render(request, self.template_name, {"formulario": form, "mensajes": mensajes, "title": title})
