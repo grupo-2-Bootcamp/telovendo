@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-from telovendo.form import FormularioProveedores
+from telovendo.form import FormularioProveedores, FormularioLogin
 from telovendo.models import FormularioProveedoresDB
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 
@@ -114,3 +116,41 @@ class ContactoProveedoresView(TemplateView):
             mensajes = {"enviado": False, "resultado": form.errors}
         return render(request, self.template_name, {"formulario": form, "mensajes": mensajes, "title": title})
     
+
+class LoginView(TemplateView):
+    template_name = 'telovendo/login.html'
+    
+
+    def get(self, request, *args, **kwargs):
+        formulario = FormularioLogin()
+        return render(request, self.template_name, {"formulario": formulario})
+    
+    def post(self, request, *args, **kwargs):
+        form = FormularioLogin(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('bienvenidaRestringida')
+            form.add_error('username', 'Credenciales incorrectas')
+            return render(request, self.template_name, { "form": form })
+        else:
+            return render(request, self.template_name, { "form": form })
+        
+class PaginaRestringidaView(TemplateView):
+    template_name = 'telovendo/bienvenidaRestringida.html'
+    # permission_required = 'principal.puede_leer_formulario'
+
+    # @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        # titulo = "Restringido"
+        # contexto = {
+        # 'titulo': titulo,
+        # "categorias": categorias
+        # }
+        # if titulo is None:
+        #     return redirect('home')
+        return render(request, self.template_name)
