@@ -123,10 +123,11 @@ class LoginView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         formulario = FormularioLogin()
-        return render(request, self.template_name, {"formulario": formulario})
+        title = 'Acceso al sitio interno'
+        return render(request, self.template_name, {"formulario": formulario, "title": title,})
     
     def post(self, request, *args, **kwargs):
-        title = "Acceder al sitio interno de TeLoVendo"
+        title = 'Acceso al sitio interno'
         form = FormularioLogin(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -137,9 +138,9 @@ class LoginView(TemplateView):
                     login(request, user)
                     return redirect('sitiointerno')
             form.add_error('username', 'Se han ingresado las credenciales equivocados.')
-            return render(request, self.template_name, { "form": form, "title": title, })
+            return render(request, self.template_name, { "form": form, "title": title,})
         else:
-            return render(request, self.template_name, { "form": form, "title": title, })
+            return render(request, self.template_name, { "form": form, "title": title,})
         
 class PaginaRestringidaView(TemplateView):
     template_name = 'telovendo-interno/bienvenida.html'
@@ -148,7 +149,7 @@ class PaginaRestringidaView(TemplateView):
 
     # @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        title = "Sitio Interno de TeLoVendo"
+        title = "Sitio Interno"
         # titulo = "Restringido"
         # contexto = {
         # 'titulo': titulo,
@@ -156,6 +157,6 @@ class PaginaRestringidaView(TemplateView):
         # }
         # if titulo is None:
         #     return redirect('home')
-        primer_nombre = request.user.first_name or 'Usuari@ - Sin nombre registrado.'
+        primer_nombre = request.user.first_name or 'Usuari@ sin nombre registrado.'
         segundo_nombre = request.user.last_name
         return render(request, self.template_name, {'primer_nombre' : primer_nombre, 'segundo_nombre' : segundo_nombre, 'title' : title,})

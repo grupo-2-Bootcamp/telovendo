@@ -14,3 +14,8 @@ Pasos:
   - Usuario: admin
   - Password: hola.123
   - Link acceso: http://127.0.0.1:8000/login
+
+- Requerimientos:
+  - Python >3.9
+  - Django >4.2
+  - Librerías adicionales: asgiref, certifi, charset-normalizer, idna, requests, sqlparse, tzdate, urllib3
