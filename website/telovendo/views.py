@@ -153,4 +153,5 @@ class PaginaRestringidaView(TemplateView):
         # }
         # if titulo is None:
         #     return redirect('home')
-        return render(request, self.template_name)
+        username = request.user.first_name or 'Usuari@ - Sin nombre registrado.'
+        return render(request, self.template_name, {'username' : username})
