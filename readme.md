@@ -1,4 +1,4 @@
-# Activadad Grupal 5 - Grupo 2 - Modulo 6
+# Actividad Grupal 5 - Grupo 2 - Modulo 6
 
 Pasos:
 - Descomprimir el proyecto TELOVENDO y acceder desde la terminal a la carpeta
