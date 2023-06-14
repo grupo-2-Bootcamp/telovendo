@@ -17,3 +17,4 @@ __pycache__/
 *$py.class
 venv/
 .venv/
+db.sqlite3.bak
