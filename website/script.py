@@ -30,7 +30,7 @@ grupo_proveedores = Group.objects.get(name='Proveedores')
 grupo_clientes = Group.objects.get(name='Clientes')
 
 
-#Inicializa modelos disponibles: logentry, group, permission, user, contenttype, session, formularioproveedoresdb
+#Inicializa modelos disponibles: logentry, group, permission, user, contenttype, session, formularioproveedoresdb, consultaproveedor
 ct_logentry = ContentType.objects.get(model='logentry')
 ct_group = ContentType.objects.get(model='group')
 ct_permission = ContentType.objects.get(model='permission')
@@ -38,6 +38,7 @@ ct_user = ContentType.objects.get(model='user')
 ct_contenttype = ContentType.objects.get(model='contenttype')
 ct_session = ContentType.objects.get(model='session')
 ct_formularioproveedoresdb = ContentType.objects.get(model='formularioproveedoresdb')
+ct_consultaproveedor = ContentType.objects.get(model='consultaproveedor')
 
 
 #Asigna todos los permisos al grupo administrador
@@ -47,23 +48,24 @@ grupo_admins.save()
 
 
 #Asigna permisos al grupo trabajadores
-permisos_1 = Permission.objects.filter(content_type=ct_formularioproveedoresdb)
-permisos_2 = Permission.objects.filter(content_type=ct_session)
-permisos_3 = Permission.objects.filter(content_type=ct_user)
-grupo_trabajadores.permissions.add(*permisos_1)
-grupo_trabajadores.permissions.add(*permisos_2)
+permisos_01 = Permission.objects.filter(content_type=ct_formularioproveedoresdb)
+permisos_02 = Permission.objects.filter(content_type=ct_user)
+permisos_03 = Permission.objects.filter(content_type=ct_consultaproveedor)
+grupo_trabajadores.permissions.add(*permisos_01)
+grupo_trabajadores.permissions.add(*permisos_02)
+grupo_trabajadores.permissions.add(*permisos_03)
 grupo_trabajadores.save()
 
 
 #Asigna permisos al grupo proveedores
-permisos_4 = Permission.objects.filter(content_type=ct_formularioproveedoresdb)
-grupo_proveedores.permissions.add(*permisos_4)
+permisos_05 = Permission.objects.filter(content_type=ct_consultaproveedor)
+grupo_proveedores.permissions.add(*permisos_05)
 grupo_proveedores.save()
 
 
 #Asigna permisos al grupo clientes
-permisos_4 = Permission.objects.filter(content_type=ct_formularioproveedoresdb)
-grupo_clientes.permissions.add(*permisos_4)
+permisos_06 = Permission.objects.filter(content_type=ct_formularioproveedoresdb)
+grupo_clientes.permissions.add(*permisos_06)
 grupo_clientes.save()
 
 
