@@ -13,3 +13,9 @@ class FormularioProveedoresDB(models.Model):
     comuna           = models.CharField (max_length=20,   null=False, blank=False)
     categoria        = models.CharField (max_length=30,   null=False, blank=False)
     productos        = models.CharField (max_length=1000, null=False, blank=False)
+
+
+class ConsultaProveedor(models.Model):
+    proveedor = models.CharField(max_length=100, null=False, blank=False)
+    asunto = models.CharField(max_length=200, null=False, blank=False)
+    mensaje = models.TextField(null=False, blank=False)
