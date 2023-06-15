@@ -26,11 +26,14 @@ B. Es posible crear y asignar usuarios a grupos ya existentes mediante las sigui
     from django.contrib.auth.models import Group, User, Permission
 
     # Crea un nuevo usuario
-    usuario_nuevo = User.objects.create_user(username="mmoragues", password="contraseña", email="email@dominio.cl", first_name="Marcelo", last_name="Moragues") 
+    usuario_nuevo = User.objects.create_user(username="amoragues", password="contraseña", email="email@dominio.cl", first_name="Andrés", last_name="Moragues") 
+    
     # Selecciona un grupo ya existente
     grupo = Group.objects.get(name='Clientes')
+    
     # Asigna al usuario
     grupo_admins.user_set.add(usuario_nuevo)
+    
     # Guarda los cambios
     grupo_proveedores.save()
 
