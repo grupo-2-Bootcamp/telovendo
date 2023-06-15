@@ -20,25 +20,36 @@ Pasos:
   - Django >4.2
   - Librerías adicionales: asgiref, certifi, charset-normalizer, idna, requests, sqlparse, tzdate, urllib3
 
-En nuestra aplicación TELOVENDO existen 4 tipos de usuarios cada uno de estos tendrá distintos permisos dentro del program:
+En nuestra aplicación TELOVENDO existen 4 tipos de usuarios cada uno de estos tendrá distintos permisos dentro del programa:
 
 - Administradores: el grupo de administrador tiene todos los permisos disponibles.
 En esta cuenta se encuentran:
-"agomez"
-"mmoragues"
-"mcornejo"
+  "agomez"
+  "mmoragues"
+  "mcornejo"
 
-Todas las password son "make2024"
 
 - Trabajadores: los trabajadores tendrán los permisos de acceder completamente al módelo formularioproveedores,es decir, podrán crear,ver, editar, eliminar proveedores de nuestra aplicación. 
 Como segundo permiso podrán acceder a la opción de crear usuario.
 Por último, tendrán acceso a la creación, edición y eliminación de las consultas que creen en consultaproveedor.
 
 En este grupo se encuentran los siguientes usuario:
-"dzuniga"
-"mtapia"
-"isoto"
+  "dzuniga"
+  "mtapia"
+  "mmoragues"
 
 - Proveedores: los proveedores solo podrán crear contulas en la opción de consultaproveedor que les otorga nuestra aplicación.
 
-- Clientes: solo acceso a formilarioproveedoresdb
+En este grupo se encuentran los siguientes usuario:
+  "isoto"
+  "jsanchez"
+  "scastillo"
+
+
+- Clientes: los usuarios de este grupo solo tendrán acceso a la vista de los proveedores de Telovendo.
+
+En este grupo se encuentran los siguientes usuario:
+  "gorca"
+  "asanhueza"
+
+Todas las cuentas tienen como password    "make2024"
