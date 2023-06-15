@@ -1,0 +1,36 @@
+# Guía para crear usuarios de manera automatizada
+
+1. Para crear usuarios en Django de manera automatizada, se puede usar el shell con el comando
+
+    python manage.py shell
+
+2. Después hay que importar las librerias adecuadas en el shell:
+
+    from django.contrib.auth.models import User
+
+3. Para crear usuarios se utiliza el siguiente procedimento:
+
+    user_nuevo = User.objects.create_user(username="nombre-de-usuario", password="contraseña", email="email", first_name="primer nombre", last_name="primer apellido")
+
+La creación de usuarios se ejecuta de manera automática
+
+# Adicional
+
+A. El código anterior se puede guardar en un archivo .py y ejecutar con el shell mediante:
+
+    python manage.py shell < nombre-de-archivo.py
+
+B. Es posible crear y asignar usuarios a grupos ya existentes mediante las siguientes instrucciones en el shell:
+
+    # Inicializa librerias
+    from django.contrib.auth.models import Group, User, Permission
+
+    # Crea un nuevo usuario
+    usuario_nuevo = User.objects.create_user(username="mmoragues", password="contraseña", email="email@dominio.cl", first_name="Marcelo", last_name="Moragues") 
+    # Selecciona un grupo ya existente
+    grupo = Group.objects.get(name='Clientes')
+    # Asigna al usuario
+    grupo_admins.user_set.add(usuario_nuevo)
+    # Guarda los cambios
+    grupo_proveedores.save()
+
