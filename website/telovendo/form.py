@@ -179,16 +179,16 @@ class FormularioConsultaProveedor(forms.Form):
                                             'max_length':' El asunto no puede tener más de 30 caracteres'
                                         },
                                         widget= forms.TextInput(attrs={
-                                            'placeholder':'',
+                                            'placeholder':'Ingrese el asunto',
                                             'class':'form-control'})
                                         )
-    mensaje = forms.TextField           (label="Mensaje", required = True, max_length=1000,
+    mensaje = forms.CharField           (label="Mensaje", required = True, max_length=1000,
                                         error_messages={
                                             'required': 'Tiene que indicar el mensaje a enviar',
                                             'max_length': 'El campo puede tener hasta 1000 caracteres',
                                         },
                                         widget= forms.Textarea(attrs={
-                                            'placeholder':'',
+                                            'placeholder':'Ingrese el mensaje',
                                             'class':'form-control'
                                         })
                                         )

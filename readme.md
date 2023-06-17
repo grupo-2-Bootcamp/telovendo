@@ -23,7 +23,6 @@ Pasos:
 
 En nuestra aplicación TELOVENDO existen 3 tipos de usuarios cada uno de estos tendrá distintos permisos dentro del programa:
 
-
 - Trabajadores: los trabajadores tendrán los permisos de acceder completamente al módelo formularioproveedores,es decir, podrán crear,ver, editar, eliminar proveedores de nuestra aplicación. 
 Como segundo permiso podrán acceder a la opción de crear usuario.
 Por último, tendrán acceso a la creación, edición y eliminación de las consultas que creen en consultaproveedor.
@@ -33,16 +32,14 @@ En este grupo se encuentran los siguientes usuario:
   "mtapia"
   "mmoragues"
 
-- Proveedores: los proveedores solo podrán crear contulas en la opción de consultaproveedor que les otorga nuestra aplicación.
-
+- Proveedores: los proveedores solo podrán crear consultas mediante el modelo consultaproveedor que les otorga nuestra aplicación.
 En este grupo se encuentran los siguientes usuario:
   "isoto"
   "jsanchez"
   "scastillo"
 
 
-- Clientes: los usuarios de este grupo solo tendrán acceso a la vista de los proveedores de Telovendo.
-
+- Clientes: los usuarios de este grupo solo tendrán acceso a una pagina propia.
 En este grupo se encuentran los siguientes usuario:
   "gorca"
   "asanhueza"

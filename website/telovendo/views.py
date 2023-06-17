@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from telovendo.form import FormularioProveedores, FormularioLogin, FormularioCreaUsuarios, FormularioConsultaProveedor
-from telovendo.models import FormularioProveedoresDB
+from telovendo.models import FormularioProveedoresDB, ConsultaProveedor
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 # Create your views here.
@@ -120,33 +121,57 @@ class LoginView(TemplateView):
         else:
             return render(request, self.template_name, { "form": form, "title": title,})
         
-class ClientesRestringidoView(TemplateView):
-    template_name = "telovendo-interno/interno-clientes.html"
-    
-    # permission_required = "principal.puede_leer_formulario"
+class ClientesRestringidoView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
+    template_name = "telovendo-interno/interno-clientes.html"    
+    permission_required = "telovendo.permiso_clientes"
 
-    # @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        title = "Sitio Interno"
+        title = "Sitio Interno para Clientes"
         primer_nombre = request.user.first_name or "Usuari@ sin nombre registrado."
         segundo_nombre = request.user.last_name
         return render(request, self.template_name, {"primer_nombre" : primer_nombre, "segundo_nombre" : segundo_nombre, "title" : title,})
     
-class TrabajadoresRestringidoView(TemplateView):
+class TrabajadoresRestringidoView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "telovendo-interno/interno-trabajadores.html"
+    permission_required = "telovendo.permiso_trabajadores"
     
     def get(self, request, *args, **kwargs):
-        title = "Sitio Interno"
+        consultas = ConsultaProveedor.objects.all()
+        title = "Sitio Interno para Trabajadores"
         primer_nombre = request.user.first_name or "Usuari@ sin nombre registrado."
         segundo_nombre = request.user.last_name
-        return render(request, self.template_name, {"primer_nombre" : primer_nombre, "segundo_nombre" : segundo_nombre, "title" : title,})
+        return render(request, self.template_name, {"primer_nombre" : primer_nombre, "segundo_nombre" : segundo_nombre, "title" : title, "consultas" : consultas})
     
-class ProveedoresRestringidoView(TemplateView):
+class ProveedoresRestringidoView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "telovendo-interno/interno-proveedores.html"
+    permission_required = "telovendo.premiso_proveedores"
     
     def get(self, request, *args, **kwargs):
         form = FormularioConsultaProveedor()
-        title = "Sitio Interno"
+        title = "Sitio Interno para Proveedores"
         primer_nombre = request.user.first_name or "Usuari@ sin nombre registrado."
         segundo_nombre = request.user.last_name
         return render(request, self.template_name, {"primer_nombre" : primer_nombre, "segundo_nombre" : segundo_nombre, "title" : title, 'form': form,})
+    
+    def post(self, request, *args, **kwargs):
+        form = FormularioConsultaProveedor(request.POST)
+        mensajes = {
+            'enviado' : True,
+            'resultado': None
+        }
+        if form.is_valid():
+            proveedor = form.cleaned_data['proveedor']
+            asunto = form.cleaned_data['asunto']
+            mensaje = form.cleaned_data['mensaje']
+
+            registro = ConsultaProveedor(
+                proveedor = proveedor,
+                asunto = asunto,
+                mensaje = mensaje,
+            )
+            registro.save()
+            mensajes = {'enviado': True, 'resultado': 'Hemos recibido el formulario correctamente, y pronto nos pondremos en contacto.', 'titulo': 'Formulario de contacto',}
+        else:
+            mensajes = {'enviado': False, 'resultado': form.errors}
+        return render(request, self.template_name, {'formulario': form, 'mensajes': mensajes, 'titulo': 'Formulario de contacto',})
+

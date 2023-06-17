@@ -11,7 +11,7 @@
     <title>TeLoVendo - {{title}}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-color">
+    <nav class="navbar navbar-expand-lg navbar-color-trabajadores">
         <div class="container-fluid">
             <div><a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" class="logo-navbar"></a></div>
             <a class="navbar-brand" href="{% url 'index' %}">TeLoVendo</a>
@@ -22,30 +22,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"> <a class="nav-link" aria-current="page" href="{% url 'index' %}">Inicio</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="{% url 'usuarios' %}">Usuarios</a> </li>
-                    {% if user.is_authenticated == False %}
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'newuser' %}">Crear cuenta</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{% url 'contactoproveedores' %}">Registro de proveedores</a> </li>
-                    {% endif %}  
-                    {% if user.is_authenticated %}
-                        {% if user.groups.all.count > 0 %}
-                            {% for group in user.groups.all %}
-                                {% if group.name == 'Trabajadores' %}
-                                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'sitiointerno-trabajadores' %}">Portal Trabajadores</a></li>
-                                {% endif %}
-                                {% if group.name == 'Clientes' %}
-                                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'sitiointerno-clientes' %}">Portal Clientes</a></li>
-                                {% endif %}
-                                {% if group.name == 'Proveedores' %}
-                                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'sitiointerno-proveedores' %}">Portal Proveedores</a></li>
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    {% endif %}
                     <li class="nav-item">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'logout' %}" class="nav-link text-danger fw-bold">Cerrar sesión</a>
-                        {% else %}
-                            <a href="{% url 'login' %}" class="nav-link text-primary fw-bold">Iniciar sesión</a>
+                            <a href="{% url 'logout' %}" class="nav-link fw-bold">Cerrar sesión</a>
                         {% endif %}
                     </li>
                 </ul>
@@ -59,7 +38,7 @@
         {% endblock %}
     </div>
 
-    <footer class="container-fluid footer p-2">
+    <footer class="container-fluid footer-color-trabajadores p-2">
         <p>© 2023 - TeLoVendo.cl</p>
         <img src="{% static 'images/logo.png' %}" class="logo-footer"></a>
     </footer>
