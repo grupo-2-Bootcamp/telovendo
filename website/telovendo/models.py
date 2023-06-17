@@ -16,6 +16,16 @@ class FormularioProveedoresDB(models.Model):
 
 
 class ConsultaProveedor(models.Model):
-    proveedor = models.CharField(max_length=100, null=False, blank=False)
-    asunto = models.CharField(max_length=200, null=False, blank=False)
-    mensaje = models.TextField(null=False, blank=False)
+    proveedor        = models.CharField(max_length=100, null=False, blank=False)
+    asunto           = models.CharField(max_length=200, null=False, blank=False)
+    mensaje          = models.TextField(null=False, blank=False)
+
+class Secciones(models.Model):
+    class Meta:
+        permissions = (
+                        ("permiso_clientes", "Permisos necesarios para clientes"),
+                        ("permiso_trabajadores", "Permisos necesarios para trabajadores"),
+                        ("premiso_proveedores", "Permisos necesarios para proveedores"),
+                    )
+
+
