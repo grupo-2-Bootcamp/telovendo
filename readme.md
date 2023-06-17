@@ -14,19 +14,14 @@ Pasos:
   - Usuario: admin
   - Password: hola.123
   - Link acceso: http://127.0.0.1:8000/login
+  - Enlace administración: http://127.0.0.1:8000/admin/
 
 - Requerimientos:
   - Python >3.9
   - Django >4.2
   - Librerías adicionales: asgiref, certifi, charset-normalizer, idna, requests, sqlparse, tzdate, urllib3
 
-En nuestra aplicación TELOVENDO existen 4 tipos de usuarios cada uno de estos tendrá distintos permisos dentro del programa:
-
-- Administradores: el grupo de administrador tiene todos los permisos disponibles.
-En esta cuenta se encuentran:
-  "agomez"
-  "mmoragues"
-  "mcornejo"
+En nuestra aplicación TELOVENDO existen 3 tipos de usuarios cada uno de estos tendrá distintos permisos dentro del programa:
 
 
 - Trabajadores: los trabajadores tendrán los permisos de acceder completamente al módelo formularioproveedores,es decir, podrán crear,ver, editar, eliminar proveedores de nuestra aplicación. 

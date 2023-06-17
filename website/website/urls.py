@@ -19,7 +19,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from django.urls import path
 from website.views import bienvenido, inicio
-from telovendo.views import IndexView, UsuariosView, ContactoProveedoresView, LoginView, PaginaRestringidaView, CreateUsersView
+from telovendo.views import IndexView, UsuariosView, ContactoProveedoresView, LoginView, CreateUsersView, ClientesRestringidoView, TrabajadoresRestringidoView, ProveedoresRestringidoView
 
 
 urlpatterns = [
@@ -31,5 +31,7 @@ urlpatterns = [
     path('contactoproveedores', ContactoProveedoresView.as_view(), name ='contactoproveedores'),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('sitiointerno', login_required(PaginaRestringidaView.as_view()), name='sitiointerno'),
+    path('interno/clientes', login_required(ClientesRestringidoView.as_view()), name='sitiointerno-clientes'),
+    path('interno/trabajadores', login_required(TrabajadoresRestringidoView.as_view()), name='sitiointerno-trabajadores'),
+    path('interno/proveedores', login_required(ProveedoresRestringidoView.as_view()), name='sitiointerno-proveedores'),
 ]

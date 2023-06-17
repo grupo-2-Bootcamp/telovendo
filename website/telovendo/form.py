@@ -162,3 +162,34 @@ class FormularioLogin(forms.Form):
                                     'class': 'form-control'
                                 })
                                 )
+
+class FormularioConsultaProveedor(forms.Form):
+    proveedor = forms.CharField         (label="Nombre del proveedor", required = True, max_length=50,
+                                        error_messages={
+                                            'required': 'El nombre del Proveedor es Obligatorio',
+                                            'max_length': 'El nombre debe tener como maximo 50 caracteres',
+                                        },
+                                        widget= forms.TextInput(attrs={
+                                            'placeholder': 'Ingrese el nombre del Proveedor',
+                                            'class':'form-control'}),
+                                        )
+    asunto = forms.CharField            (label="Asunto", required = True, max_length=30,
+                                        error_messages={
+                                            'required': 'Tiene que indicar el asunto',
+                                            'max_length':' El asunto no puede tener más de 30 caracteres'
+                                        },
+                                        widget= forms.TextInput(attrs={
+                                            'placeholder':'',
+                                            'class':'form-control'})
+                                        )
+    mensaje = forms.TextField           (label="Mensaje", required = True, max_length=1000,
+                                        error_messages={
+                                            'required': 'Tiene que indicar el mensaje a enviar',
+                                            'max_length': 'El campo puede tener hasta 1000 caracteres',
+                                        },
+                                        widget= forms.Textarea(attrs={
+                                            'placeholder':'',
+                                            'class':'form-control'
+                                        })
+                                        )
+

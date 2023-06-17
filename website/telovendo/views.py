@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
-from telovendo.form import FormularioProveedores, FormularioLogin, FormularioCreaUsuarios
+from telovendo.form import FormularioProveedores, FormularioLogin, FormularioCreaUsuarios, FormularioConsultaProveedor
 from telovendo.models import FormularioProveedoresDB
 from django.contrib.auth import authenticate, login, logout
 
@@ -92,8 +92,6 @@ class ContactoProveedoresView(TemplateView):
 
 class LoginView(TemplateView):
     template_name = "telovendo/login.html"
-    
-
     def get(self, request, *args, **kwargs):
         formulario = FormularioLogin()
         title = "Acceso al sitio interno"
@@ -109,27 +107,46 @@ class LoginView(TemplateView):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect("sitiointerno")
+                    if request.user.groups.filter(name='Trabajadores').exists():
+                        return redirect('sitiointerno-trabajadores')
+                    elif request.user.groups.filter(name='Clientes').exists():
+                        return redirect('sitiointerno-clientes')
+                    elif request.user.groups.filter(name='Proveedores').exists():
+                        return redirect('sitiointerno-proveedores')
+                    else:
+                        return redirect('index')
             form.add_error("username", "Se han ingresado las credenciales equivocados.")
             return render(request, self.template_name, { "form": form, "title": title,})
         else:
             return render(request, self.template_name, { "form": form, "title": title,})
         
-class PaginaRestringidaView(TemplateView):
-    template_name = "telovendo-interno/bienvenida.html"
+class ClientesRestringidoView(TemplateView):
+    template_name = "telovendo-interno/interno-clientes.html"
     
     # permission_required = "principal.puede_leer_formulario"
 
     # @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         title = "Sitio Interno"
-        # titulo = "Restringido"
-        # contexto = {
-        # "titulo": titulo,
-        # "categorias": categorias
-        # }
-        # if titulo is None:
-        #     return redirect("home")
         primer_nombre = request.user.first_name or "Usuari@ sin nombre registrado."
         segundo_nombre = request.user.last_name
         return render(request, self.template_name, {"primer_nombre" : primer_nombre, "segundo_nombre" : segundo_nombre, "title" : title,})
+    
+class TrabajadoresRestringidoView(TemplateView):
+    template_name = "telovendo-interno/interno-trabajadores.html"
+    
+    def get(self, request, *args, **kwargs):
+        title = "Sitio Interno"
+        primer_nombre = request.user.first_name or "Usuari@ sin nombre registrado."
+        segundo_nombre = request.user.last_name
+        return render(request, self.template_name, {"primer_nombre" : primer_nombre, "segundo_nombre" : segundo_nombre, "title" : title,})
+    
+class ProveedoresRestringidoView(TemplateView):
+    template_name = "telovendo-interno/interno-proveedores.html"
+    
+    def get(self, request, *args, **kwargs):
+        form = FormularioConsultaProveedor()
+        title = "Sitio Interno"
+        primer_nombre = request.user.first_name or "Usuari@ sin nombre registrado."
+        segundo_nombre = request.user.last_name
+        return render(request, self.template_name, {"primer_nombre" : primer_nombre, "segundo_nombre" : segundo_nombre, "title" : title, 'form': form,})
