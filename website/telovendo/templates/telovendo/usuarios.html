@@ -4,26 +4,21 @@
 
         <table class="table m-3">
             <thead>
-                <th scope="col">Imagen de perfil</th>
-                <th scope="col">Nombre de usuario</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Ubicación</th>
-                <th scope="col">Comentario</th>
-                <th scope="col">Nota</th>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
+                </tr>
             </thead>
             <tbody>
-                {% for usuario in usuarios %}
+            {% for user in users %}
                 <tr>
-                    <td><img src="{{usuario.imagen}}" alt="Imagen de perfil de {{usuario.nombre}} {{usuario.apellido}}"></td>
-                    <td>{{usuario.userid}}</td>
-                    <td>{{usuario.nombre}}</td>
-                    <td>{{usuario.apellido}}</td>
-                    <td>{{usuario.ubicacion}}</td>
-                    <td>{{usuario.comentario}}</td>
-                    <td>{{usuario.puntaje}}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
                 </tr>
-                {% endfor %}
+            {% endfor %}
             </tbody>
+        </table>
         </table>
         {% endblock %}

@@ -1,4 +1,34 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User, Group
+
+
+class FormularioCreaUsuarios(UserCreationForm):
+
+    first_name = forms.CharField        (label="Nombre", required = True, max_length=30,
+                                        error_messages={
+                                            'required': 'Tiene que indicar su nombre',
+                                            'max_length':' El nombre no puede tener más de 30 caracteres'
+                                        },
+                                        widget= forms.TextInput(attrs={
+                                            'placeholder':'',
+                                            })
+                                        )
+    last_name = forms.CharField         (label="Apellido", required = True, max_length=30,
+                                        error_messages={
+                                            'required': 'Tiene que indicar su apellido',
+                                            'max_length':' El apellido no puede tener más de 30 caracteres'
+                                        },
+                                        widget= forms.TextInput(attrs={
+                                            'placeholder':'',
+                                            })
+                                        )
+
+    group = forms.ModelChoiceField(queryset=Group.objects.all())
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'group',  'email',)
 
 class FormularioProveedores(forms.Form):
     nombre_proveedor = forms.CharField  (label="Nombre", required = True, max_length=50,
