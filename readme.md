@@ -1,20 +1,35 @@
-# Actividad Grupal 5 - Grupo 2 - Modulo 6
+# Actividad Grupal 5 - Grupo 2 - Sprint Final
 
 Pasos:
 - Descomprimir el proyecto TELOVENDO y acceder desde la terminal a la carpeta
 - En la terminal colocar: 
   - python -m venv .venv
   - .venv/scripts/activate
-  - pip install -r requirements
+  - pip install -r requirements.txt
   - cd website
   - python manage.py runserver
 - Ahora puedes acceder al proyecto desde el link: http://127.0.0.1:8000/
   
 - Las credenciales de prueba son
-  - Usuario: admin
-  - Password: hola.123
-  - Link acceso: http://127.0.0.1:8000/login
-  - Enlace administración: http://127.0.0.1:8000/admin/
+    
+    - Superadministrador
+        - Usuario: admin
+        - Password: hola.123
+
+    - Grupo trabajadores
+        - Usuario: dzuniga
+        - Password: make2024
+
+    - Grupo proveedores
+        - Usuario: scastillo
+        - Password: make2024
+
+    - Grupo clientes
+        - Usuario: gorca
+        - Password: make2024
+
+    - Link acceso: http://127.0.0.1:8000/login
+    - Enlace administración: http://127.0.0.1:8000/admin/
 
 - Requerimientos:
   - Python >3.9
@@ -44,4 +59,15 @@ En este grupo se encuentran los siguientes usuario:
   "gorca"
   "asanhueza"
 
-Todas las cuentas tienen como password    "make2024"
+Todas las cuentas tienen como password "make2024"
+
+# Cambios sprint final
+
+Los cambios añadidos desde la versión grupal 6 a esta versión son:
+
+- Reestructuración del portal interno en tres portales, cada uno (trabajadores, proveedores, clientes) que solo se puede acceder con el usuario en el grupo correcto.
+- Rediseño de la pagina de login para poder indicar datos de identificación y seleccionar el grupo al que desea pertenecer.
+- Rediseño de la pagina de listado de usuarios para que muestre información contenida en el modelo User.
+- Creación de pagina para el error 403, de acceso no permitido
+- Creación de dos archivos base para las paginas de los grupos de trabajadores (base_trabajadores.html) y proveedores (base_proveedores.html)
+- Implementación de formulario con el modelo consultaproveedor
